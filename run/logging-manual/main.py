@@ -30,12 +30,14 @@ def index():
 
     # [START cloudrun_manual_logging]
     # [START run_manual_logging]
+    # [START functions_manual_logging]
     # Uncomment and populate this variable in your code:
     # PROJECT = 'The project ID of your Cloud Run service';
 
     # Build structured log messages as an object.
     global_log_fields = {}
-
+    
+    # [END functions_manual_logging]
     # Add log correlation to nest all log messages.
     trace_header = request.headers.get("X-Cloud-Trace-Context")
 
@@ -45,6 +47,7 @@ def index():
             "logging.googleapis.com/trace"
         ] = f"projects/{PROJECT}/traces/{trace[0]}"
 
+    # [START functions_manual_logging]
     # Complete a structured log entry.
     entry = dict(
         severity="NOTICE",
@@ -55,6 +58,7 @@ def index():
     )
 
     print(json.dumps(entry))
+    # [END functions_manual_logging]
     # [END run_manual_logging]
     # [END cloudrun_manual_logging]
 
